@@ -7,17 +7,31 @@
 
 import UIKit
 
+// MARK: - HomeView
 class HomeView: UIView {
+    // MARK: Lifecycle
+    init() {
+        super.init(frame: .zero)
 
+        backgroundColor = .white
+
+        addSubviews()
+        configureConstraints()
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: Internal
     let scrollView: UIScrollView = {
-
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
     let stackView: UIStackView = {
-
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -28,44 +42,26 @@ class HomeView: UIView {
     }()
 
     let addressView: AddressView = {
-
         let addressView = AddressView()
         addressView.translatesAutoresizingMaskIntoConstraints = false
         return addressView
     }()
 
     let categoryListView: CategoryListView = {
-
         let categoryListView = CategoryListView()
         categoryListView.translatesAutoresizingMaskIntoConstraints = false
         return categoryListView
     }()
 
     let restaurantListView: RestaurantListView = {
-
         let restaurantListView = RestaurantListView()
         restaurantListView.translatesAutoresizingMaskIntoConstraints = false
         return restaurantListView
     }()
-
-    init() {
-        super.init(frame: .zero)
-
-        backgroundColor = .white
-
-        addSubviews()
-        configureConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 extension HomeView {
-
     func addSubviews() {
-
         addSubview(scrollView)
         scrollView.addSubview(stackView)
 
@@ -75,11 +71,9 @@ extension HomeView {
     }
 
     func configureConstraints() {
-
-        let estimatedHeight = CGFloat(restaurantListView.tableView.numberOfRows(inSection: 0))*RestaurantListView.cellSize
+        let estimatedHeight = CGFloat(restaurantListView.tableView.numberOfRows(inSection: 0)) * RestaurantListView.cellSize
 
         NSLayoutConstraint.activate([
-
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -96,4 +90,3 @@ extension HomeView {
         ])
     }
 }
-

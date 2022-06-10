@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let viewController = DevPassConfigurator.make()
+//        let viewController = DevPassConfigurator.make()
+        let viewController = HomeViewFactory.make()
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UINavigationController(rootViewController: viewController)
